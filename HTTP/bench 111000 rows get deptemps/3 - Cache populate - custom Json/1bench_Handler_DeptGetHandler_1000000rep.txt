@@ -1,0 +1,6 @@
+goos: windows
+goarch: amd64
+pkg: github.com/romapres2010/restDept/HTTP
+BenchmarkHandler_DeptGetHandler-2   	 1000000	     13300 ns/op	15036.97 MB/s	    3265 B/op	      11 allocs/op
+PASS
+ok  	github.com/romapres2010/restDept/HTTP	287.341s

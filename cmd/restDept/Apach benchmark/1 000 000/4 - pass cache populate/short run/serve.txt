@@ -1,0 +1,122 @@
+ROUTINE ======================== net/http.(*conn).serve in H:\Go\src\net\http\server.go
+     390ms   1.24mins (flat, cum) 61.85% of Total
+         .          .   1814:   c.r = &connReader{conn: c}
+         .          .   1815:   c.bufr = newBufioReader(c.r)
+         .          .   1816:   c.bufw = newBufioWriterSize(checkConnErrorWriter{c}, 4<<10)
+         .          .   1817:
+         .          .   1818:   for {
+      90ms     11.31s   1819:           w, err := c.readRequest(ctx)
+      60ms       60ms   1820:           if c.r.remain != c.server.initialReadLimitSize() {
+         .          .   1821:                   // If we read any bytes off the wire, we're active.
+      10ms       50ms   1822:                   c.setState(c.rwc, StateActive)
+         .          .   1823:           }
+         .          .   1824:           if err != nil {
+         .          .   1825:                   const errorHeaders = "\r\nContent-Type: text/plain; charset=utf-8\r\nConnection: close\r\n\r\n"
+         .          .   1826:
+         .          .   1827:                   if err == errTooLarge {
+         .          .   1828:                           // Their HTTP client may or may not be
+         .          .   1829:                           // able to read this if we're
+         .          .   1830:                           // responding to them and hanging up
+         .          .   1831:                           // while they're still writing their
+         .          .   1832:                           // request. Undefined behavior.
+         .          .   1833:                           const publicErr = "431 Request Header Fields Too Large"
+         .          .   1834:                           fmt.Fprintf(c.rwc, "HTTP/1.1 "+publicErr+errorHeaders+publicErr)
+         .          .   1835:                           c.closeWriteAndWait()
+         .          .   1836:                           return
+         .          .   1837:                   }
+         .          .   1838:                   if isCommonNetReadError(err) {
+         .          .   1839:                           return // don't reply
+         .          .   1840:                   }
+         .          .   1841:
+         .          .   1842:                   publicErr := "400 Bad Request"
+         .          .   1843:                   if v, ok := err.(badRequestError); ok {
+         .          .   1844:                           publicErr = publicErr + ": " + string(v)
+         .          .   1845:                   }
+         .          .   1846:
+         .          .   1847:                   fmt.Fprintf(c.rwc, "HTTP/1.1 "+publicErr+errorHeaders+publicErr)
+         .          .   1848:                   return
+         .          .   1849:           }
+         .          .   1850:
+         .          .   1851:           // Expect 100 Continue support
+         .          .   1852:           req := w.req
+      10ms      160ms   1853:           if req.expectsContinue() {
+         .          .   1854:                   if req.ProtoAtLeast(1, 1) && req.ContentLength != 0 {
+         .          .   1855:                           // Wrap the Body reader with one that replies on the connection
+         .          .   1856:                           req.Body = &expectContinueReader{readCloser: req.Body, resp: w}
+         .          .   1857:                   }
+         .       70ms   1858:           } else if req.Header.get("Expect") != "" {
+         .          .   1859:                   w.sendExpectationFailed()
+         .          .   1860:                   return
+         .          .   1861:           }
+         .          .   1862:
+         .       80ms   1863:           c.curReq.Store(w)
+         .          .   1864:
+         .       30ms   1865:           if requestBodyRemains(req.Body) {
+         .          .   1866:                   registerOnHitEOF(req.Body, w.conn.r.startBackgroundRead)
+         .          .   1867:           } else {
+      10ms      1.09s   1868:                   w.conn.r.startBackgroundRead()
+         .          .   1869:           }
+         .          .   1870:
+         .          .   1871:           // HTTP cannot have multiple simultaneous active requests.[*]
+         .          .   1872:           // Until the server replies to this request, it can't read another,
+         .          .   1873:           // so we might as well run the handler in this goroutine.
+         .          .   1874:           // [*] Not strictly true: HTTP pipelining. We could let them all process
+         .          .   1875:           // in parallel even if their responses need to be serialized.
+         .          .   1876:           // But we're not going to implement HTTP pipelining because it
+         .          .   1877:           // was never deployed in the wild and the answer is HTTP/2.
+      30ms     28.30s   1878:           serverHandler{c.server}.ServeHTTP(w, w.req)
+      40ms      790ms   1879:           w.cancelCtx()
+      10ms      150ms   1880:           if c.hijacked() {
+         .          .   1881:                   return
+         .          .   1882:           }
+         .     26.25s   1883:           w.finishRequest()
+      60ms      110ms   1884:           if !w.shouldReuseConnection() {
+         .          .   1885:                   if w.requestBodyLimitHit || w.closedRequestBodyEarly() {
+         .          .   1886:                           c.closeWriteAndWait()
+         .          .   1887:                   }
+         .          .   1888:                   return
+         .          .   1889:           }
+      20ms      120ms   1890:           c.setState(c.rwc, StateIdle)
+         .       60ms   1891:           c.curReq.Store((*response)(nil))
+         .          .   1892:
+         .       10ms   1893:           if !w.conn.server.doKeepAlives() {
+         .          .   1894:                   // We're in shutdown mode. We might've replied
+         .          .   1895:                   // to the user without "Connection: close" and
+         .          .   1896:                   // they might think they can send another
+         .          .   1897:                   // request, but such is life with HTTP/1.1.
+         .          .   1898:                   return
+         .          .   1899:           }
+         .          .   1900:
+         .          .   1901:           if d := c.server.idleTimeout(); d != 0 {
+         .      530ms   1902:                   c.rwc.SetReadDeadline(time.Now().Add(d))
+      10ms      4.87s   1903:                   if _, err := c.bufr.Peek(4); err != nil {
+         .          .   1904:                           return
+         .          .   1905:                   }
+         .          .   1906:           }
+      40ms      620ms   1907:           c.rwc.SetReadDeadline(time.Time{})
+         .          .   1908:   }
+         .          .   1909:}
+         .          .   1910:
+         .          .   1911:func (w *response) sendExpectationFailed() {
+         .          .   1912:   // TODO(bradfitz): let ServeHTTP handlers handle
+ROUTINE ======================== net/http.serverHandler.ServeHTTP in H:\Go\src\net\http\server.go
+     100ms     28.27s (flat, cum) 23.42% of Total
+         .          .   2761:// DefaultServeMux and also handles "OPTIONS *" requests.
+         .          .   2762:type serverHandler struct {
+         .          .   2763:   srv *Server
+         .          .   2764:}
+         .          .   2765:
+      10ms       10ms   2766:func (sh serverHandler) ServeHTTP(rw ResponseWriter, req *Request) {
+      30ms       30ms   2767:   handler := sh.srv.Handler
+      10ms       10ms   2768:   if handler == nil {
+         .          .   2769:           handler = DefaultServeMux
+         .          .   2770:   }
+      10ms       10ms   2771:   if req.RequestURI == "*" && req.Method == "OPTIONS" {
+         .          .   2772:           handler = globalOptionsHandler{}
+         .          .   2773:   }
+      10ms     28.18s   2774:   handler.ServeHTTP(rw, req)
+      30ms       30ms   2775:}
+         .          .   2776:
+         .          .   2777:// ListenAndServe listens on the TCP network address srv.Addr and then
+         .          .   2778:// calls Serve to handle requests on incoming connections.
+         .          .   2779:// Accepted connections are configured to enable TCP keep-alives.

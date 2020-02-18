@@ -1,0 +1,42 @@
+2019/07/28 19:31:36 [INFO] postgers InitDb - START, param: '{ConfigFile:bench_test_database.cfg ConnectString: UseNotification:false ChanelPrefix: ListenerMinReconnectInterval:0s ListenerMaxReconnectInterval:0s ListenerWaitForNotificationInterval:0s PqConnMaxLifetime:0 PqMaxOpenConns:0 PqMaxIdleConns:0}'
+2019/07/28 19:31:36 [INFO] postgers InitDb - Loading PostgreSQL config from file 'bench_test_database.cfg'
+2019/07/28 19:31:36 [INFO] postgers InitDb - cfg.PqMaxOpenConns = '128'
+2019/07/28 19:31:36 [INFO] postgers InitDb - cfg.PqMaxIdleConns = '20'
+2019/07/28 19:31:36 [INFO] postgers InitDb - cfg.PqConnMaxLifetime = '1000' millisecond
+2019/07/28 19:31:36 [INFO] postgers InitDb - Opening PostgreSQL database host=127.0.0.1 port=5432 dbname=test_database sslmode=disable user=test_user password=qwerty 
+2019/07/28 19:31:36 [INFO] postgers InitDb - PostgreSQL database is opened
+2019/07/28 19:31:36 [INFO] postgers InitDb - Prepare SQL statements
+2019/07/28 19:31:36 [INFO] postgers prepareSQLStatements - START
+2019/07/28 19:31:36 [INFO] postgers prepareSQLStatements - SUCCESS
+2019/07/28 19:31:36 [INFO] postgers InitDb - DO NOT use notification
+2019/07/28 19:31:36 [INFO] postgers InitDb - SUCCESS
+2019/07/28 19:31:36 [INFO] bolt InitDb - START, param: '{ConfigFile:test_boltdb.cfg DbFilePath: DbTimeout:1000}'
+2019/07/28 19:31:36 [INFO] bolt InitDb - Loading Bolt DB config from file 'test_boltdb.cfg'
+2019/07/28 19:31:36 [INFO] bolt InitDb - parameter DbFilePath 'c:/temp/test_bolt.db'
+2019/07/28 19:31:36 [INFO] bolt InitDb - parameter DbTimeout '100'
+2019/07/28 19:31:36 [INFO] bolt InitDb - Opening Bolt DB database 'c:/temp/test_bolt.db'
+2019/07/28 19:31:36 [INFO] bolt InitDb - create buckets 'DeptBucket'
+2019/07/28 19:31:36 [INFO] bolt InitDb - buckets 'DeptBucket' was created
+2019/07/28 19:31:36 [INFO] bolt InitDb - create buckets 'EmpBucket'
+2019/07/28 19:31:36 [INFO] bolt InitDb - buckets 'EmpBucket' was created
+2019/07/28 19:31:36 [INFO] bolt InitDb - Bolt DB database is opened
+2019/07/28 19:31:36 [INFO] bolt InitDb - SUCCESS
+2019/07/28 19:31:38 [INFO] json (s *Service)  PopulateDeptCache - runtime.NumCPU()= '4'
+2019/07/28 19:31:38 [INFO] json (s *Service)  PopulateDeptCache - lenPK= '1137812'
+2019/07/28 19:31:38 [INFO] json (s *Service)  PopulateDeptCache - start gorutine '0'
+2019/07/28 19:31:38 [INFO] json (s *Service)  PopulateDeptCache - start gorutine '1'
+2019/07/28 19:31:38 [INFO] json (s *Service)  PopulateDeptCache - start gorutine '2'
+2019/07/28 19:31:38 [INFO] json (s *Service)  PopulateDeptCache - start gorutine '3'
+2019/07/28 19:39:38 [INFO] json (s *Service)  PopulateDeptCache - gorutine '1' - takes8m0.6280393s
+2019/07/28 19:39:40 [INFO] json (s *Service)  PopulateDeptCache - gorutine '2' - takes8m2.4429133s
+2019/07/28 19:39:40 [INFO] json (s *Service)  PopulateDeptCache - gorutine '0' - takes8m2.6273197s
+2019/07/28 19:39:44 [INFO] json (s *Service)  PopulateDeptCache - gorutine '3' - takes8m6.3601563s
+2019/07/28 19:39:44 [INFO] json (s *Service)  PopulateDeptCache - SUCCESS
+2019/07/28 19:39:44 [INFO] bolt (d *BoltDb) Close() - START
+2019/07/28 19:39:44 [INFO] bolt (d *BoltDb) Close() - SUCCESS
+goos: windows
+goarch: amd64
+pkg: github.com/romapres2010/restDept/HTTP
+BenchmarkHandler_DeptEmpsGetHandler-8   	 1000000	      7305 ns/op	27377.24 MB/s	    3199 B/op	       8 allocs/op
+PASS
+ok  	github.com/romapres2010/restDept/HTTP	554.348s

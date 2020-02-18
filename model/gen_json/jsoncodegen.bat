@@ -1,0 +1,1 @@
+gojay  -s . -pkg model -t Dept -a json -o json.go

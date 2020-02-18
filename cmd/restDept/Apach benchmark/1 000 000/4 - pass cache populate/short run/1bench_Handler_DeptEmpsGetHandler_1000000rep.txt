@@ -1,0 +1,38 @@
+2019/07/25 08:18:35 [INFO] postgers InitDb - START, param: '{ConfigFile:bench_test_database.cfg ConnectString: UseNotification:false ChanelPrefix: ListenerMinReconnectInterval:0s ListenerMaxReconnectInterval:0s ListenerWaitForNotificationInterval:0s PqConnMaxLifetime:0 PqMaxOpenConns:0 PqMaxIdleConns:0}'
+2019/07/25 08:18:35 [INFO] postgers InitDb - Loading PostgreSQL config from file 'bench_test_database.cfg'
+2019/07/25 08:18:35 [INFO] postgers InitDb - cfg.PqMaxOpenConns = '128'
+2019/07/25 08:18:35 [INFO] postgers InitDb - cfg.PqMaxIdleConns = '20'
+2019/07/25 08:18:35 [INFO] postgers InitDb - cfg.PqConnMaxLifetime = '1000' millisecond
+2019/07/25 08:18:35 [INFO] postgers InitDb - Opening PostgreSQL database host=127.0.0.1 port=5432 dbname=test_database sslmode=disable user=test_user password=qwerty 
+2019/07/25 08:18:35 [INFO] postgers InitDb - PostgreSQL database is opened
+2019/07/25 08:18:35 [INFO] postgers InitDb - Prepare SQL statements
+2019/07/25 08:18:35 [INFO] postgers prepareSQLStatements - START
+2019/07/25 08:18:35 [INFO] postgers prepareSQLStatements - SUCCESS
+2019/07/25 08:18:35 [INFO] postgers InitDb - DO NOT use notification
+2019/07/25 08:18:35 [INFO] postgers InitDb - SUCCESS
+2019/07/25 08:18:35 [INFO] cache (c *Cache) PopulateCache - START
+2019/07/25 08:18:36 [INFO] cache (c *Cache) PopulateCache - runtime.NumCPU()= '8'
+2019/07/25 08:18:36 [INFO] cache (c *Cache) PopulateCache - lenPK= '1017204'
+2019/07/25 08:18:36 [INFO] cache (c *Cache) PopulateCache - start gorutine '0'
+2019/07/25 08:18:36 [INFO] cache (c *Cache) PopulateCache - start gorutine '1'
+2019/07/25 08:18:36 [INFO] cache (c *Cache) PopulateCache - start gorutine '2'
+2019/07/25 08:18:36 [INFO] cache (c *Cache) PopulateCache - start gorutine '3'
+2019/07/25 08:18:36 [INFO] cache (c *Cache) PopulateCache - start gorutine '4'
+2019/07/25 08:18:36 [INFO] cache (c *Cache) PopulateCache - start gorutine '5'
+2019/07/25 08:18:36 [INFO] cache (c *Cache) PopulateCache - start gorutine '6'
+2019/07/25 08:18:36 [INFO] cache (c *Cache) PopulateCache - start gorutine '7'
+2019/07/25 08:23:50 [INFO] cache (c *Cache) PopulateCache - gorutine '3' - takes5m13.9541981s
+2019/07/25 08:23:51 [INFO] cache (c *Cache) PopulateCache - gorutine '5' - takes5m14.7565426s
+2019/07/25 08:23:51 [INFO] cache (c *Cache) PopulateCache - gorutine '6' - takes5m14.7935285s
+2019/07/25 08:23:51 [INFO] cache (c *Cache) PopulateCache - gorutine '1' - takes5m14.9529219s
+2019/07/25 08:23:51 [INFO] cache (c *Cache) PopulateCache - gorutine '0' - takes5m15.2198345s
+2019/07/25 08:23:52 [INFO] cache (c *Cache) PopulateCache - gorutine '4' - takes5m15.7706588s
+2019/07/25 08:23:52 [INFO] cache (c *Cache) PopulateCache - gorutine '7' - takes5m16.0881196s
+2019/07/25 08:23:52 [INFO] cache (c *Cache) PopulateCache - gorutine '2' - takes5m16.3510383s
+2019/07/25 08:23:52 [INFO] cache (c *Cache) PopulateCache - SUCCESS
+goos: windows
+goarch: amd64
+pkg: github.com/romapres2010/restDept/HTTP
+BenchmarkHandler_DeptEmpsGetHandler-8   	 1000000	     13662 ns/op	14638.59 MB/s	    7781 B/op	      14 allocs/op
+PASS
+ok  	github.com/romapres2010/restDept/HTTP	373.063s

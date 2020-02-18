@@ -1,0 +1,6 @@
+psql -U postgres/Welcome1
+CREATE DATABASE test_database;
+CREATE USER test_user WITH password 'qwerty';
+GRANT ALL ON DATABASE test_database TO test_user;
+
+psql -h localhost test_database test_user

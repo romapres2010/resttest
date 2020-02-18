@@ -1,0 +1,605 @@
+
+H:\YandexDisk\Проекты\GOLang\SRC\github.com\romapres2010\restDept\cmd\restDept>restDept.exe -dbconf test_database.cfg -l localhost:3000 -usecache no -JSON pass -populateJSON no -d INFO
+2019/07/23 07:12:22 [INFO] daemon Run - START, param: '&{LogFilter:0xda2600 ListenSpec:localhost:3000 UseCache:no PqDbCfg:{ConfigFile:test_database.cfg ConnectString: UseNotification:false ChanelPrefix:events ListenerMinReconnectInterval:10s ListenerMaxReconnectInterval:1m0s ListenerWaitForNotificationInterval:1m0s PqConnMaxLifetime:0 PqMaxOpenConns:0 PqMaxIdleConns:0} UseBoltDb:false BoltDbCfg:{ConfigFile: DbFilePath: DbTimeout:0} JSONCfg:{DeptBucketName:DeptBucket SaveChSize:5000000 SaveQueueSize:10000 IsPopulateCache:false IsPassCache:true}}'
+2019/07/23 07:12:22 [INFO] postgers InitDb - START, param: '{ConfigFile:test_database.cfg ConnectString: UseNotification:false ChanelPrefix:events ListenerMinReconnectInterval:10s ListenerMaxReconnectInterval:1m0s ListenerWaitForNotificationInterval:1m0s PqConnMaxLifetime:0 PqMaxOpenConns:0 PqMaxIdleConns:0}'
+2019/07/23 07:12:22 [INFO] postgers InitDb - Loading PostgreSQL config from file 'test_database.cfg'
+2019/07/23 07:12:22 [INFO] postgers InitDb - cfg.PqMaxOpenConns = '16'
+2019/07/23 07:12:22 [INFO] postgers InitDb - cfg.PqMaxIdleConns = '8'
+2019/07/23 07:12:22 [INFO] postgers InitDb - cfg.PqConnMaxLifetime = '1000' millisecond
+2019/07/23 07:12:22 [INFO] postgers InitDb - Opening PostgreSQL database host=127.0.0.1 port=5432 dbname=test_database sslmode=disable user=test_user password=qwerty
+2019/07/23 07:12:22 [INFO] postgers InitDb - PostgreSQL database is opened
+2019/07/23 07:12:22 [INFO] postgers InitDb - Prepare SQL statements
+2019/07/23 07:12:22 [INFO] postgers prepareSQLStatements - START
+2019/07/23 07:12:22 [INFO] postgers prepareSQLStatements - SUCCESS
+2019/07/23 07:12:22 [INFO] postgers InitDb - DO NOT use notification
+2019/07/23 07:12:22 [INFO] postgers InitDb - SUCCESS
+2019/07/23 07:12:22 [INFO] daemon Run - DO NOT use Bolt DB
+2019/07/23 07:12:22 [INFO] daemon Run - DO NOT use cache
+2019/07/23 07:12:22 [INFO] daemon StartHTTPHandlerWait - START, param: '&{LogFilter:0xda2600 ListenSpec:localhost:3000 UseCache:no PqDbCfg:{ConfigFile:test_database.cfg ConnectString: UseNotification:false ChanelPrefix:events ListenerMinReconnectInterval:10s ListenerMaxReconnectInterval:1m0s ListenerWaitForNotificationInterval:1m0s PqConnMaxLifetime:0 PqMaxOpenConns:0 PqMaxIdleConns:0} UseBoltDb:false BoltDbCfg:{ConfigFile: DbFilePath: DbTimeout:0} JSONCfg:{DeptBucketName:DeptBucket SaveChSize:5000000 SaveQueueSize:10000 IsPopulateCache:false IsPassCache:true}}'
+2019/07/23 07:12:22 [INFO] daemon StartHTTPHandlerWait - Starting, HTTP on: localhost:3000
+2019/07/23 07:12:22 [INFO] daemon StartHTTPHandlerWait - Daemon is running. For exit <CTRL-c>
+2019/07/23 07:12:22 [INFO] daemon waitForSignal - START
+2019/07/23 07:15:09 [ERROR] postgres (p *PgDb) GetEmpsPKByDeptTx - ERROR - stm.Select(&v, id), args = '52703921'
+2019/07/23 07:15:09 [ERROR] postgres (p *PgDb) GetDeptTx - ERROR - p.GetEmpsPKByDept(v.Deptno, tx), args = '52703921'
+2019/07/23 07:15:09 [ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '52703921'
+2019/07/23 07:15:09 [ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '52703921'
+2019/07/23 07:15:09 [ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '52703921'
+2019/07/23 07:15:09 [ERROR] http (h *Handler) RandomDeptGetHandler - ERROR - h.RandomGetDept()
+ driver: bad connection
+[ERROR] postgres (p *PgDb) GetEmpsPKByDeptTx - ERROR - stm.Select(&v, id), args = '52703921'
+github.com/romapres2010/restdept/postgres.(*PgDb).GetEmpsPKByDeptTx
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_emp_tx.go:187
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDeptTx
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_dept_tx.go:106
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_service.go:71
+github.com/romapres2010/restdept/json.(*Service).GetDeptEmps
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_dept.go:127
+github.com/romapres2010/restdept/json.(*Service).RandomGetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_random.go:39
+github.com/romapres2010/restdept/http.(*Handler).RandomDeptGetHandler
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/http/http_random.go:19
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/romapres2010/restdept/daemon.RecoverWrap.func1
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/daemon/daemon.go:233
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/gorilla/mux.(*Router).ServeHTTP
+        H:/YandexDisk/Проекты/GOLang/src/github.com/gorilla/mux/mux.go:212
+net/http.(*ServeMux).ServeHTTP
+        H:/Go/src/net/http/server.go:2375
+net/http.serverHandler.ServeHTTP
+        H:/Go/src/net/http/server.go:2774
+net/http.(*conn).serve
+        H:/Go/src/net/http/server.go:1878
+runtime.goexit
+        H:/Go/src/runtime/asm_amd64.s:1337
+[ERROR] postgres (p *PgDb) GetDeptTx - ERROR - p.GetEmpsPKByDept(v.Deptno, tx), args = '52703921'
+[ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '52703921'
+[ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '52703921'
+[ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '52703921'
+2019/07/23 07:15:25 [ERROR] daemon RecoverWrap - HandlerFunc - ERROR -
+ runtime error: invalid memory address or nil pointer dereference
+2019/07/23 07:15:39 [ERROR] postgres (p *PgDb) GetDeptTx - ERROR - stm.Get(&v, id), args = '51489134'
+2019/07/23 07:15:39 [ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '51489134'
+2019/07/23 07:15:39 [ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '51489134'
+2019/07/23 07:15:39 [ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '51489134'
+2019/07/23 07:15:39 [ERROR] http (h *Handler) RandomDeptGetHandler - ERROR - h.RandomGetDept()
+ driver: bad connection
+[ERROR] postgres (p *PgDb) GetDeptTx - ERROR - stm.Get(&v, id), args = '51489134'
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDeptTx
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_dept_tx.go:99
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_service.go:71
+github.com/romapres2010/restdept/json.(*Service).GetDeptEmps
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_dept.go:127
+github.com/romapres2010/restdept/json.(*Service).RandomGetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_random.go:39
+github.com/romapres2010/restdept/http.(*Handler).RandomDeptGetHandler
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/http/http_random.go:19
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/romapres2010/restdept/daemon.RecoverWrap.func1
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/daemon/daemon.go:233
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/gorilla/mux.(*Router).ServeHTTP
+        H:/YandexDisk/Проекты/GOLang/src/github.com/gorilla/mux/mux.go:212
+net/http.(*ServeMux).ServeHTTP
+        H:/Go/src/net/http/server.go:2375
+net/http.serverHandler.ServeHTTP
+        H:/Go/src/net/http/server.go:2774
+net/http.(*conn).serve
+        H:/Go/src/net/http/server.go:1878
+runtime.goexit
+        H:/Go/src/runtime/asm_amd64.s:1337
+[ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '51489134'
+[ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '51489134'
+[ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '51489134'
+2019/07/23 07:15:51 [ERROR] postgres (p *PgDb) GetEmpsPKByDeptTx - ERROR - stm.Select(&v, id), args = '67544600'
+2019/07/23 07:15:51 [ERROR] postgres (p *PgDb) GetDeptTx - ERROR - p.GetEmpsPKByDept(v.Deptno, tx), args = '67544600'
+2019/07/23 07:15:51 [ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '67544600'
+2019/07/23 07:15:51 [ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '67544600'
+2019/07/23 07:15:51 [ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '67544600'
+2019/07/23 07:15:51 [ERROR] http (h *Handler) RandomDeptGetHandler - ERROR - h.RandomGetDept()
+ driver: bad connection
+[ERROR] postgres (p *PgDb) GetEmpsPKByDeptTx - ERROR - stm.Select(&v, id), args = '67544600'
+github.com/romapres2010/restdept/postgres.(*PgDb).GetEmpsPKByDeptTx
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_emp_tx.go:187
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDeptTx
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_dept_tx.go:106
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_service.go:71
+github.com/romapres2010/restdept/json.(*Service).GetDeptEmps
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_dept.go:127
+github.com/romapres2010/restdept/json.(*Service).RandomGetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_random.go:39
+github.com/romapres2010/restdept/http.(*Handler).RandomDeptGetHandler
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/http/http_random.go:19
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/romapres2010/restdept/daemon.RecoverWrap.func1
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/daemon/daemon.go:233
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/gorilla/mux.(*Router).ServeHTTP
+        H:/YandexDisk/Проекты/GOLang/src/github.com/gorilla/mux/mux.go:212
+net/http.(*ServeMux).ServeHTTP
+        H:/Go/src/net/http/server.go:2375
+net/http.serverHandler.ServeHTTP
+        H:/Go/src/net/http/server.go:2774
+net/http.(*conn).serve
+        H:/Go/src/net/http/server.go:1878
+runtime.goexit
+        H:/Go/src/runtime/asm_amd64.s:1337
+[ERROR] postgres (p *PgDb) GetDeptTx - ERROR - p.GetEmpsPKByDept(v.Deptno, tx), args = '67544600'
+[ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '67544600'
+[ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '67544600'
+[ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '67544600'
+2019/07/23 07:16:16 [ERROR] postgres (p *PgDb) GetDeptTx - ERROR - stm.Get(&v, id), args = '79022585'
+2019/07/23 07:16:16 [ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '79022585'
+2019/07/23 07:16:16 [ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '79022585'
+2019/07/23 07:16:16 [ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '79022585'
+2019/07/23 07:16:16 [ERROR] http (h *Handler) RandomDeptGetHandler - ERROR - h.RandomGetDept()
+ driver: bad connection
+[ERROR] postgres (p *PgDb) GetDeptTx - ERROR - stm.Get(&v, id), args = '79022585'
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDeptTx
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_dept_tx.go:99
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_service.go:71
+github.com/romapres2010/restdept/json.(*Service).GetDeptEmps
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_dept.go:127
+github.com/romapres2010/restdept/json.(*Service).RandomGetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_random.go:39
+github.com/romapres2010/restdept/http.(*Handler).RandomDeptGetHandler
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/http/http_random.go:19
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/romapres2010/restdept/daemon.RecoverWrap.func1
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/daemon/daemon.go:233
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/gorilla/mux.(*Router).ServeHTTP
+        H:/YandexDisk/Проекты/GOLang/src/github.com/gorilla/mux/mux.go:212
+net/http.(*ServeMux).ServeHTTP
+        H:/Go/src/net/http/server.go:2375
+net/http.serverHandler.ServeHTTP
+        H:/Go/src/net/http/server.go:2774
+net/http.(*conn).serve
+        H:/Go/src/net/http/server.go:1878
+runtime.goexit
+        H:/Go/src/runtime/asm_amd64.s:1337
+[ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '79022585'
+[ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '79022585'
+[ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '79022585'
+2019/07/23 07:16:39 [ERROR] postgres (p *PgDb) GetDeptTx - ERROR - stm.Get(&v, id), args = '31497295'
+2019/07/23 07:16:39 [ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '31497295'
+2019/07/23 07:16:39 [ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '31497295'
+2019/07/23 07:16:39 [ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '31497295'
+2019/07/23 07:16:39 [ERROR] http (h *Handler) RandomDeptGetHandler - ERROR - h.RandomGetDept()
+ driver: bad connection
+[ERROR] postgres (p *PgDb) GetDeptTx - ERROR - stm.Get(&v, id), args = '31497295'
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDeptTx
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_dept_tx.go:99
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_service.go:71
+github.com/romapres2010/restdept/json.(*Service).GetDeptEmps
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_dept.go:127
+github.com/romapres2010/restdept/json.(*Service).RandomGetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_random.go:39
+github.com/romapres2010/restdept/http.(*Handler).RandomDeptGetHandler
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/http/http_random.go:19
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/romapres2010/restdept/daemon.RecoverWrap.func1
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/daemon/daemon.go:233
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/gorilla/mux.(*Router).ServeHTTP
+        H:/YandexDisk/Проекты/GOLang/src/github.com/gorilla/mux/mux.go:212
+net/http.(*ServeMux).ServeHTTP
+        H:/Go/src/net/http/server.go:2375
+net/http.serverHandler.ServeHTTP
+        H:/Go/src/net/http/server.go:2774
+net/http.(*conn).serve
+        H:/Go/src/net/http/server.go:1878
+runtime.goexit
+        H:/Go/src/runtime/asm_amd64.s:1337
+[ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '31497295'
+[ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '31497295'
+[ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '31497295'
+2019/07/23 07:17:03 [ERROR] postgres (p *PgDb) GetEmpsPKByDeptTx - ERROR - stm.Select(&v, id), args = '106173367'
+2019/07/23 07:17:03 [ERROR] postgres (p *PgDb) GetDeptTx - ERROR - p.GetEmpsPKByDept(v.Deptno, tx), args = '106173367'
+2019/07/23 07:17:03 [ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '106173367'
+2019/07/23 07:17:03 [ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '106173367'
+2019/07/23 07:17:03 [ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '106173367'
+2019/07/23 07:17:03 [ERROR] http (h *Handler) RandomDeptGetHandler - ERROR - h.RandomGetDept()
+ driver: bad connection
+[ERROR] postgres (p *PgDb) GetEmpsPKByDeptTx - ERROR - stm.Select(&v, id), args = '106173367'
+github.com/romapres2010/restdept/postgres.(*PgDb).GetEmpsPKByDeptTx
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_emp_tx.go:187
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDeptTx
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_dept_tx.go:106
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_service.go:71
+github.com/romapres2010/restdept/json.(*Service).GetDeptEmps
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_dept.go:127
+github.com/romapres2010/restdept/json.(*Service).RandomGetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_random.go:39
+github.com/romapres2010/restdept/http.(*Handler).RandomDeptGetHandler
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/http/http_random.go:19
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/romapres2010/restdept/daemon.RecoverWrap.func1
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/daemon/daemon.go:233
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/gorilla/mux.(*Router).ServeHTTP
+        H:/YandexDisk/Проекты/GOLang/src/github.com/gorilla/mux/mux.go:212
+net/http.(*ServeMux).ServeHTTP
+        H:/Go/src/net/http/server.go:2375
+net/http.serverHandler.ServeHTTP
+        H:/Go/src/net/http/server.go:2774
+net/http.(*conn).serve
+        H:/Go/src/net/http/server.go:1878
+runtime.goexit
+        H:/Go/src/runtime/asm_amd64.s:1337
+[ERROR] postgres (p *PgDb) GetDeptTx - ERROR - p.GetEmpsPKByDept(v.Deptno, tx), args = '106173367'
+[ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '106173367'
+[ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '106173367'
+[ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '106173367'
+2019/07/23 07:17:56 [ERROR] postgres (p *PgDb) GetEmpsPKByDeptTx - ERROR - stm.Select(&v, id), args = '37876048'
+2019/07/23 07:17:56 [ERROR] postgres (p *PgDb) GetDeptTx - ERROR - p.GetEmpsPKByDept(v.Deptno, tx), args = '37876048'
+2019/07/23 07:17:56 [ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '37876048'
+2019/07/23 07:17:56 [ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '37876048'
+2019/07/23 07:17:56 [ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '37876048'
+2019/07/23 07:17:56 [ERROR] http (h *Handler) RandomDeptGetHandler - ERROR - h.RandomGetDept()
+ driver: bad connection
+[ERROR] postgres (p *PgDb) GetEmpsPKByDeptTx - ERROR - stm.Select(&v, id), args = '37876048'
+github.com/romapres2010/restdept/postgres.(*PgDb).GetEmpsPKByDeptTx
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_emp_tx.go:187
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDeptTx
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_dept_tx.go:106
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_service.go:71
+github.com/romapres2010/restdept/json.(*Service).GetDeptEmps
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_dept.go:127
+github.com/romapres2010/restdept/json.(*Service).RandomGetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_random.go:39
+github.com/romapres2010/restdept/http.(*Handler).RandomDeptGetHandler
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/http/http_random.go:19
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/romapres2010/restdept/daemon.RecoverWrap.func1
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/daemon/daemon.go:233
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/gorilla/mux.(*Router).ServeHTTP
+        H:/YandexDisk/Проекты/GOLang/src/github.com/gorilla/mux/mux.go:212
+net/http.(*ServeMux).ServeHTTP
+        H:/Go/src/net/http/server.go:2375
+net/http.serverHandler.ServeHTTP
+        H:/Go/src/net/http/server.go:2774
+net/http.(*conn).serve
+        H:/Go/src/net/http/server.go:1878
+runtime.goexit
+        H:/Go/src/runtime/asm_amd64.s:1337
+[ERROR] postgres (p *PgDb) GetDeptTx - ERROR - p.GetEmpsPKByDept(v.Deptno, tx), args = '37876048'
+[ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '37876048'
+[ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '37876048'
+[ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '37876048'
+2019/07/23 07:18:00 [ERROR] postgres (p *PgDb) GetEmpsPKByDeptTx - ERROR - stm.Select(&v, id), args = '104425920'
+2019/07/23 07:18:00 [ERROR] postgres (p *PgDb) GetDeptTx - ERROR - p.GetEmpsPKByDept(v.Deptno, tx), args = '104425920'
+2019/07/23 07:18:00 [ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '104425920'
+2019/07/23 07:18:00 [ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '104425920'
+2019/07/23 07:18:00 [ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '104425920'
+2019/07/23 07:18:00 [ERROR] http (h *Handler) RandomDeptGetHandler - ERROR - h.RandomGetDept()
+ driver: bad connection
+[ERROR] postgres (p *PgDb) GetEmpsPKByDeptTx - ERROR - stm.Select(&v, id), args = '104425920'
+github.com/romapres2010/restdept/postgres.(*PgDb).GetEmpsPKByDeptTx
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_emp_tx.go:187
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDeptTx
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_dept_tx.go:106
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_service.go:71
+github.com/romapres2010/restdept/json.(*Service).GetDeptEmps
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_dept.go:127
+github.com/romapres2010/restdept/json.(*Service).RandomGetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_random.go:39
+github.com/romapres2010/restdept/http.(*Handler).RandomDeptGetHandler
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/http/http_random.go:19
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/romapres2010/restdept/daemon.RecoverWrap.func1
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/daemon/daemon.go:233
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/gorilla/mux.(*Router).ServeHTTP
+        H:/YandexDisk/Проекты/GOLang/src/github.com/gorilla/mux/mux.go:212
+net/http.(*ServeMux).ServeHTTP
+        H:/Go/src/net/http/server.go:2375
+net/http.serverHandler.ServeHTTP
+        H:/Go/src/net/http/server.go:2774
+net/http.(*conn).serve
+        H:/Go/src/net/http/server.go:1878
+runtime.goexit
+        H:/Go/src/runtime/asm_amd64.s:1337
+[ERROR] postgres (p *PgDb) GetDeptTx - ERROR - p.GetEmpsPKByDept(v.Deptno, tx), args = '104425920'
+[ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '104425920'
+[ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '104425920'
+[ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '104425920'
+2019/07/23 07:18:21 [ERROR] postgres (p *PgDb) GetEmpsPKByDeptTx - ERROR - stm.Select(&v, id), args = '40839238'
+2019/07/23 07:18:21 [ERROR] postgres (p *PgDb) GetDeptTx - ERROR - p.GetEmpsPKByDept(v.Deptno, tx), args = '40839238'
+2019/07/23 07:18:21 [ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '40839238'
+2019/07/23 07:18:21 [ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '40839238'
+2019/07/23 07:18:21 [ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '40839238'
+2019/07/23 07:18:21 [ERROR] http (h *Handler) RandomDeptGetHandler - ERROR - h.RandomGetDept()
+ driver: bad connection
+[ERROR] postgres (p *PgDb) GetEmpsPKByDeptTx - ERROR - stm.Select(&v, id), args = '40839238'
+github.com/romapres2010/restdept/postgres.(*PgDb).GetEmpsPKByDeptTx
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_emp_tx.go:187
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDeptTx
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_dept_tx.go:106
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_service.go:71
+github.com/romapres2010/restdept/json.(*Service).GetDeptEmps
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_dept.go:127
+github.com/romapres2010/restdept/json.(*Service).RandomGetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_random.go:39
+github.com/romapres2010/restdept/http.(*Handler).RandomDeptGetHandler
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/http/http_random.go:19
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/romapres2010/restdept/daemon.RecoverWrap.func1
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/daemon/daemon.go:233
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/gorilla/mux.(*Router).ServeHTTP
+        H:/YandexDisk/Проекты/GOLang/src/github.com/gorilla/mux/mux.go:212
+net/http.(*ServeMux).ServeHTTP
+        H:/Go/src/net/http/server.go:2375
+net/http.serverHandler.ServeHTTP
+        H:/Go/src/net/http/server.go:2774
+net/http.(*conn).serve
+        H:/Go/src/net/http/server.go:1878
+runtime.goexit
+        H:/Go/src/runtime/asm_amd64.s:1337
+[ERROR] postgres (p *PgDb) GetDeptTx - ERROR - p.GetEmpsPKByDept(v.Deptno, tx), args = '40839238'
+[ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '40839238'
+[ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '40839238'
+[ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '40839238'
+2019/07/23 07:18:23 [ERROR] daemon RecoverWrap - HandlerFunc - ERROR -
+ runtime error: invalid memory address or nil pointer dereference
+2019/07/23 07:18:24 [ERROR] daemon RecoverWrap - HandlerFunc - ERROR -
+ runtime error: invalid memory address or nil pointer dereference
+2019/07/23 07:18:25 [ERROR] postgres (p *PgDb) GetEmpsPKByDeptTx - ERROR - stm.Select(&v, id), args = '62316269'
+2019/07/23 07:18:25 [ERROR] postgres (p *PgDb) GetDeptTx - ERROR - p.GetEmpsPKByDept(v.Deptno, tx), args = '62316269'
+2019/07/23 07:18:25 [ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '62316269'
+2019/07/23 07:18:25 [ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '62316269'
+2019/07/23 07:18:25 [ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '62316269'
+2019/07/23 07:18:25 [ERROR] http (h *Handler) RandomDeptGetHandler - ERROR - h.RandomGetDept()
+ driver: bad connection
+[ERROR] postgres (p *PgDb) GetEmpsPKByDeptTx - ERROR - stm.Select(&v, id), args = '62316269'
+github.com/romapres2010/restdept/postgres.(*PgDb).GetEmpsPKByDeptTx
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_emp_tx.go:187
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDeptTx
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_dept_tx.go:106
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_service.go:71
+github.com/romapres2010/restdept/json.(*Service).GetDeptEmps
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_dept.go:127
+github.com/romapres2010/restdept/json.(*Service).RandomGetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_random.go:39
+github.com/romapres2010/restdept/http.(*Handler).RandomDeptGetHandler
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/http/http_random.go:19
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/romapres2010/restdept/daemon.RecoverWrap.func1
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/daemon/daemon.go:233
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/gorilla/mux.(*Router).ServeHTTP
+        H:/YandexDisk/Проекты/GOLang/src/github.com/gorilla/mux/mux.go:212
+net/http.(*ServeMux).ServeHTTP
+        H:/Go/src/net/http/server.go:2375
+net/http.serverHandler.ServeHTTP
+        H:/Go/src/net/http/server.go:2774
+net/http.(*conn).serve
+        H:/Go/src/net/http/server.go:1878
+runtime.goexit
+        H:/Go/src/runtime/asm_amd64.s:1337
+[ERROR] postgres (p *PgDb) GetDeptTx - ERROR - p.GetEmpsPKByDept(v.Deptno, tx), args = '62316269'
+[ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '62316269'
+[ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '62316269'
+[ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '62316269'
+2019/07/23 07:19:04 [ERROR] postgres (p *PgDb) GetDeptTx - ERROR - stm.Get(&v, id), args = '39553600'
+2019/07/23 07:19:04 [ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '39553600'
+2019/07/23 07:19:04 [ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '39553600'
+2019/07/23 07:19:04 [ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '39553600'
+2019/07/23 07:19:04 [ERROR] http (h *Handler) RandomDeptGetHandler - ERROR - h.RandomGetDept()
+ driver: bad connection
+[ERROR] postgres (p *PgDb) GetDeptTx - ERROR - stm.Get(&v, id), args = '39553600'
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDeptTx
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_dept_tx.go:99
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_service.go:71
+github.com/romapres2010/restdept/json.(*Service).GetDeptEmps
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_dept.go:127
+github.com/romapres2010/restdept/json.(*Service).RandomGetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_random.go:39
+github.com/romapres2010/restdept/http.(*Handler).RandomDeptGetHandler
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/http/http_random.go:19
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/romapres2010/restdept/daemon.RecoverWrap.func1
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/daemon/daemon.go:233
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/gorilla/mux.(*Router).ServeHTTP
+        H:/YandexDisk/Проекты/GOLang/src/github.com/gorilla/mux/mux.go:212
+net/http.(*ServeMux).ServeHTTP
+        H:/Go/src/net/http/server.go:2375
+net/http.serverHandler.ServeHTTP
+        H:/Go/src/net/http/server.go:2774
+net/http.(*conn).serve
+        H:/Go/src/net/http/server.go:1878
+runtime.goexit
+        H:/Go/src/runtime/asm_amd64.s:1337
+[ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '39553600'
+[ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '39553600'
+[ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '39553600'
+2019/07/23 07:19:33 [ERROR] postgres (p *PgDb) GetDeptTx - ERROR - stm.Get(&v, id), args = '3031060'
+2019/07/23 07:19:33 [ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '3031060'
+2019/07/23 07:19:33 [ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '3031060'
+2019/07/23 07:19:33 [ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '3031060'
+2019/07/23 07:19:33 [ERROR] http (h *Handler) RandomDeptGetHandler - ERROR - h.RandomGetDept()
+ driver: bad connection
+[ERROR] postgres (p *PgDb) GetDeptTx - ERROR - stm.Get(&v, id), args = '3031060'
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDeptTx
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_dept_tx.go:99
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_service.go:71
+github.com/romapres2010/restdept/json.(*Service).GetDeptEmps
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_dept.go:127
+github.com/romapres2010/restdept/json.(*Service).RandomGetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_random.go:39
+github.com/romapres2010/restdept/http.(*Handler).RandomDeptGetHandler
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/http/http_random.go:19
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/romapres2010/restdept/daemon.RecoverWrap.func1
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/daemon/daemon.go:233
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/gorilla/mux.(*Router).ServeHTTP
+        H:/YandexDisk/Проекты/GOLang/src/github.com/gorilla/mux/mux.go:212
+net/http.(*ServeMux).ServeHTTP
+        H:/Go/src/net/http/server.go:2375
+net/http.serverHandler.ServeHTTP
+        H:/Go/src/net/http/server.go:2774
+net/http.(*conn).serve
+        H:/Go/src/net/http/server.go:1878
+runtime.goexit
+        H:/Go/src/runtime/asm_amd64.s:1337
+[ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '3031060'
+[ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '3031060'
+[ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '3031060'
+2019/07/23 07:19:36 [ERROR] postgres (p *PgDb) GetEmpsPKByDeptTx - ERROR - stm.Select(&v, id), args = '73645170'
+2019/07/23 07:19:36 [ERROR] postgres (p *PgDb) GetDeptTx - ERROR - p.GetEmpsPKByDept(v.Deptno, tx), args = '73645170'
+2019/07/23 07:19:36 [ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '73645170'
+2019/07/23 07:19:36 [ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '73645170'
+2019/07/23 07:19:36 [ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '73645170'
+2019/07/23 07:19:36 [ERROR] http (h *Handler) RandomDeptGetHandler - ERROR - h.RandomGetDept()
+ driver: bad connection
+[ERROR] postgres (p *PgDb) GetEmpsPKByDeptTx - ERROR - stm.Select(&v, id), args = '73645170'
+github.com/romapres2010/restdept/postgres.(*PgDb).GetEmpsPKByDeptTx
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_emp_tx.go:187
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDeptTx
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_dept_tx.go:106
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_service.go:71
+github.com/romapres2010/restdept/json.(*Service).GetDeptEmps
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_dept.go:127
+github.com/romapres2010/restdept/json.(*Service).RandomGetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_random.go:39
+github.com/romapres2010/restdept/http.(*Handler).RandomDeptGetHandler
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/http/http_random.go:19
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/romapres2010/restdept/daemon.RecoverWrap.func1
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/daemon/daemon.go:233
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/gorilla/mux.(*Router).ServeHTTP
+        H:/YandexDisk/Проекты/GOLang/src/github.com/gorilla/mux/mux.go:212
+net/http.(*ServeMux).ServeHTTP
+        H:/Go/src/net/http/server.go:2375
+net/http.serverHandler.ServeHTTP
+        H:/Go/src/net/http/server.go:2774
+net/http.(*conn).serve
+        H:/Go/src/net/http/server.go:1878
+runtime.goexit
+        H:/Go/src/runtime/asm_amd64.s:1337
+[ERROR] postgres (p *PgDb) GetDeptTx - ERROR - p.GetEmpsPKByDept(v.Deptno, tx), args = '73645170'
+[ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '73645170'
+[ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '73645170'
+[ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '73645170'
+2019/07/23 07:19:49 [ERROR] postgres (p *PgDb) GetDeptTx - ERROR - stm.Get(&v, id), args = '74032746'
+2019/07/23 07:19:49 [ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '74032746'
+2019/07/23 07:19:49 [ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '74032746'
+2019/07/23 07:19:49 [ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '74032746'
+2019/07/23 07:19:49 [ERROR] http (h *Handler) RandomDeptGetHandler - ERROR - h.RandomGetDept()
+ driver: bad connection
+[ERROR] postgres (p *PgDb) GetDeptTx - ERROR - stm.Get(&v, id), args = '74032746'
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDeptTx
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_dept_tx.go:99
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_service.go:71
+github.com/romapres2010/restdept/json.(*Service).GetDeptEmps
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_dept.go:127
+github.com/romapres2010/restdept/json.(*Service).RandomGetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_random.go:39
+github.com/romapres2010/restdept/http.(*Handler).RandomDeptGetHandler
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/http/http_random.go:19
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/romapres2010/restdept/daemon.RecoverWrap.func1
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/daemon/daemon.go:233
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/gorilla/mux.(*Router).ServeHTTP
+        H:/YandexDisk/Проекты/GOLang/src/github.com/gorilla/mux/mux.go:212
+net/http.(*ServeMux).ServeHTTP
+        H:/Go/src/net/http/server.go:2375
+net/http.serverHandler.ServeHTTP
+        H:/Go/src/net/http/server.go:2774
+net/http.(*conn).serve
+        H:/Go/src/net/http/server.go:1878
+runtime.goexit
+        H:/Go/src/runtime/asm_amd64.s:1337
+[ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '74032746'
+[ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '74032746'
+[ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '74032746'
+2019/07/23 07:19:49 [ERROR] postgres (p *PgDb) GetEmpsPKByDeptTx - ERROR - stm.Select(&v, id), args = '29217324'
+2019/07/23 07:19:50 [ERROR] postgres (p *PgDb) GetDeptTx - ERROR - p.GetEmpsPKByDept(v.Deptno, tx), args = '29217324'
+2019/07/23 07:19:50 [ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '29217324'
+2019/07/23 07:19:50 [ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '29217324'
+2019/07/23 07:19:50 [ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '29217324'
+2019/07/23 07:19:50 [ERROR] http (h *Handler) RandomDeptGetHandler - ERROR - h.RandomGetDept()
+ driver: bad connection
+[ERROR] postgres (p *PgDb) GetEmpsPKByDeptTx - ERROR - stm.Select(&v, id), args = '29217324'
+github.com/romapres2010/restdept/postgres.(*PgDb).GetEmpsPKByDeptTx
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_emp_tx.go:187
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDeptTx
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_dept_tx.go:106
+github.com/romapres2010/restdept/postgres.(*PgDb).GetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/postgres/pg_service.go:71
+github.com/romapres2010/restdept/json.(*Service).GetDeptEmps
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_dept.go:127
+github.com/romapres2010/restdept/json.(*Service).RandomGetDept
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/json/json_random.go:39
+github.com/romapres2010/restdept/http.(*Handler).RandomDeptGetHandler
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/http/http_random.go:19
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/romapres2010/restdept/daemon.RecoverWrap.func1
+        H:/YandexDisk/Проекты/GOLang/src/github.com/romapres2010/restdept/daemon/daemon.go:233
+net/http.HandlerFunc.ServeHTTP
+        H:/Go/src/net/http/server.go:1995
+github.com/gorilla/mux.(*Router).ServeHTTP
+        H:/YandexDisk/Проекты/GOLang/src/github.com/gorilla/mux/mux.go:212
+net/http.(*ServeMux).ServeHTTP
+        H:/Go/src/net/http/server.go:2375
+net/http.serverHandler.ServeHTTP
+        H:/Go/src/net/http/server.go:2774
+net/http.(*conn).serve
+        H:/Go/src/net/http/server.go:1878
+runtime.goexit
+        H:/Go/src/runtime/asm_amd64.s:1337
+[ERROR] postgres (p *PgDb) GetDeptTx - ERROR - p.GetEmpsPKByDept(v.Deptno, tx), args = '29217324'
+[ERROR] postgers (p *PgDb) GetDept - ERROR - p.GetDeptTx(id, nil), args = '29217324'
+[ERROR] json (s *Service)  GetDeptEmps - ERROR - s.deptService.GetDept(id), args = '29217324'
+[ERROR] json (s *Service)  RandomGetDept - ERROR - p.GetDeptTx(par), args = '29217324'
+2019/07/23 07:19:54 [ERROR] daemon RecoverWrap - HandlerFunc - ERROR -
+ runtime error: invalid memory address or nil pointer dereference
