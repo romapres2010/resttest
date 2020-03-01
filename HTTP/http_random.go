@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	//mylog "github.com/romapres2010/restdept/log"
+	//mylog "github.com/romapres2010/resttest/log"
 )
 
 // RandomDeptGetHandler handle get dept

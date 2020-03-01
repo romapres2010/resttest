@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/pkg/errors"
-	"github.com/romapres2010/restdept/bolt"
+	"github.com/romapres2010/resttest/bolt"
 )
 
 // Listener represents a chanel for save to Bolt DB

@@ -7,8 +7,8 @@ import (
 	"github.com/francoispqt/gojay"
 	"github.com/pkg/errors"
 
-	//mylog "github.com/romapres2010/restdept/log"
-	"github.com/romapres2010/restdept/model"
+	//mylog "github.com/romapres2010/resttest/log"
+	"github.com/romapres2010/resttest/model"
 )
 
 // GetDept return a JSON for a given id
@@ -54,6 +54,7 @@ func (s *Service) GetDeptEmps(id int) ([]byte, error) {
 	var val *cacheStr
 	var inCache bool
 
+	// Если JSON = "memory" || JSON = "bolt"
 	if !s.isPassCache {
 		// Ищем в кэше
 		val, inCache = s.deptCache.get(id)

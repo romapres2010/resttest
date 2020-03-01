@@ -17,13 +17,13 @@ import (
 	"github.com/gorilla/mux"
 
 	"github.com/pkg/errors"
-	"github.com/romapres2010/restdept/bolt"
-	"github.com/romapres2010/restdept/cache"
-	myhttp "github.com/romapres2010/restdept/http"
-	"github.com/romapres2010/restdept/json"
-	//mylog "github.com/romapres2010/restdept/log"
-	"github.com/romapres2010/restdept/model"
-	"github.com/romapres2010/restdept/postgres"
+	"github.com/romapres2010/resttest/bolt"
+	"github.com/romapres2010/resttest/cache"
+	myhttp "github.com/romapres2010/resttest/http"
+	"github.com/romapres2010/resttest/json"
+	//mylog "github.com/romapres2010/resttest/log"
+	"github.com/romapres2010/resttest/model"
+	"github.com/romapres2010/resttest/postgres"
 )
 
 // Config - представляет конфигурационные настройки

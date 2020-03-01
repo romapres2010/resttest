@@ -1,0 +1,1 @@
+./resttest -dbconf test_database.cfg -l 10.20.0.4:3000 -usecache no -JSON pass -populateJSON no -d INFO

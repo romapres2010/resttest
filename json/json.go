@@ -1,8 +1,8 @@
 package json
 
 import (
-	"github.com/romapres2010/restdept/bolt"
-	"github.com/romapres2010/restdept/model"
+	"github.com/romapres2010/resttest/bolt"
+	"github.com/romapres2010/resttest/model"
 )
 
 // Config - представляет конфигурационные настройки

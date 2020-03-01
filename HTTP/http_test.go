@@ -13,10 +13,10 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/hashicorp/logutils"
-	"github.com/romapres2010/restdept/bolt"
-	"github.com/romapres2010/restdept/cache"
-	"github.com/romapres2010/restdept/json"
-	"github.com/romapres2010/restdept/postgres"
+	"github.com/romapres2010/resttest/bolt"
+	"github.com/romapres2010/resttest/cache"
+	"github.com/romapres2010/resttest/json"
+	"github.com/romapres2010/resttest/postgres"
 )
 
 /*

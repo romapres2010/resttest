@@ -8,7 +8,7 @@ import (
 	"github.com/jmoiron/sqlx"
 	"github.com/pkg/errors"
 
-	"github.com/romapres2010/restdept/model"
+	"github.com/romapres2010/resttest/model"
 )
 
 // DeptExistsTx returns TRUE if row for a given id exists. Transaction mode

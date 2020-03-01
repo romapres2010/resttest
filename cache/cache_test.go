@@ -12,7 +12,7 @@ import (
 
 	_ "github.com/lib/pq"
 
-	"github.com/romapres2010/restDept/postgres"
+	"github.com/romapres2010/resttest/postgres"
 )
 
 /*

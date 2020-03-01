@@ -1,0 +1,18 @@
+2020/03/01 06:15:45 [INFO] postgers InitDb - START, param: '{ConfigFile:bench_test_database.cfg ConnectString: UseNotification:false ChanelPrefix: ListenerMinReconnectInterval:0s ListenerMaxReconnectInterval:0s ListenerWaitForNotificationInterval:0s PqConnMaxLifetime:0 PqMaxOpenConns:0 PqMaxIdleConns:0}'
+2020/03/01 06:15:45 [INFO] postgers InitDb - Loading PostgreSQL config from file 'bench_test_database.cfg'
+2020/03/01 06:15:45 [INFO] postgers InitDb - cfg.PqMaxOpenConns = '521'
+2020/03/01 06:15:45 [INFO] postgers InitDb - cfg.PqMaxIdleConns = '128'
+2020/03/01 06:15:45 [INFO] postgers InitDb - cfg.PqConnMaxLifetime = '10000' millisecond
+2020/03/01 06:15:45 [INFO] postgers InitDb - Opening PostgreSQL database host=10.20.0.4 port=5432 dbname=test_database sslmode=disable user=test_user password=qwerty 
+2020/03/01 06:15:45 [INFO] postgers InitDb - PostgreSQL database is opened
+2020/03/01 06:15:45 [INFO] postgers InitDb - Prepare SQL statements
+2020/03/01 06:15:45 [INFO] postgers prepareSQLStatements - START
+2020/03/01 06:15:45 [INFO] postgers prepareSQLStatements - SUCCESS
+2020/03/01 06:15:45 [INFO] postgers InitDb - DO NOT use notification
+2020/03/01 06:15:45 [INFO] postgers InitDb - SUCCESS
+goos: linux
+goarch: amd64
+pkg: github.com/romapres2010/resttest/postgres
+BenchmarkPgDb_GetDeptEmps-16    	    1000	     93367 ns/op	2142.08 MB/s	    7928 B/op	     253 allocs/op
+PASS
+ok  	github.com/romapres2010/resttest/postgres	22.851s

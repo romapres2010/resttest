@@ -1,0 +1,9 @@
+go test -benchmem -benchtime 10x -bench ^BenchmarkPgDb_GetDeptEmps$ > 1bench_PgDb_GetDeptEmps_10rep.txt 
+go test -benchmem -benchtime 100x -bench ^BenchmarkPgDb_GetDeptEmps$ > 1bench_PgDb_GetDeptEmps_100rep.txt 
+go test -benchmem -benchtime 1000x -bench ^BenchmarkPgDb_GetDeptEmps$ > 1bench_PgDb_GetDeptEmps_1000rep.txt 
+go test -benchmem -benchtime 10000x -bench ^BenchmarkPgDb_GetDeptEmps$ > 1bench_PgDb_GetDeptEmps_10000rep.txt 
+go test -benchmem -benchtime 100000x -bench ^BenchmarkPgDb_GetDeptEmps$ > 1bench_PgDb_GetDeptEmps_100000rep.txt 
+go test -benchmem -benchtime 1000000x -bench ^BenchmarkPgDb_GetDeptEmps$ > 1bench_PgDb_GetDeptEmps_1000000rep.txt 
+go test -benchmem -benchtime 10000000x -bench ^BenchmarkPgDb_GetDeptEmps$ > 1bench_PgDb_GetDeptEmps_10000000rep.txt 
+go test -benchmem -benchtime 100000000x -bench ^BenchmarkPgDb_GetDeptEmps$ > 1bench_PgDb_GetDeptEmps_100000000rep.txt 
+go test -benchmem -benchtime 1000000000x -bench ^BenchmarkPgDb_GetDeptEmps$ > 1bench_PgDb_GetDeptEmps_1000000000rep.txt 

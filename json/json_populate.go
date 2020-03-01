@@ -28,7 +28,7 @@ func (s *Service) PopulateDeptCache() {
 	}
 
 	//	maxProcs := runtime.GOMAXPROCS(0)
-	numCPU := runtime.NumCPU() / 2
+	numCPU := runtime.NumCPU()
 	log.Printf("[INFO] %v - runtime.NumCPU()= '%v'", cnt, numCPU)
 
 	lenPK := len(testDeptPK)

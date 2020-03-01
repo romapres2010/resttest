@@ -7,7 +7,7 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/romapres2010/restdept/model"
+	"github.com/romapres2010/resttest/model"
 )
 
 var testDeptPK []*model.DeptPK

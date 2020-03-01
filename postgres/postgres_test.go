@@ -11,7 +11,7 @@ import (
 	"github.com/hashicorp/logutils"
 
 	_ "github.com/lib/pq"
-	"github.com/romapres2010/restdept/model"
+	"github.com/romapres2010/resttest/model"
 )
 
 /*

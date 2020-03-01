@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/romapres2010/restdept/model"
+	"github.com/romapres2010/resttest/model"
 
 	"github.com/lib/pq"
 	"github.com/pkg/errors"

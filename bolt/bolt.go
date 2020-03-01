@@ -258,10 +258,10 @@ func (d *Db) Get(bucket string, key int) ([]byte, error) {
 			retbuf = retbuf[:0]       // сбросим указатель на начало
 			// если размер мал, то выбросим старый буффер и создадим новый
 			if cap(retbuf) < len(buf) {
-				retbuf = make([]byte, len(buf))
+				retbuf = make([]byte, 0, len(buf))
 			}
-			copy(retbuf, buf) // Будет скопировано не более размера целевого среза
-			//retbuf = append(retbuf, buf...)
+			//copy(retbuf, buf) // Будет скопировано не более размера целевого среза
+			retbuf = append(retbuf, buf...)
 			//mylog.PrintfDebug("[DEBUG] %v - SUCCESS get buf from Bolt DB, key='%v', '%p'", cnt, key, retbuf)
 		} else {
 			//mylog.PrintfDebug("[DEBUG] %v - buf readen from Bolt DB is NULL, key='%v'", cnt, key)

@@ -1,1 +1,0 @@
-restDept.exe -dbconf test_database.cfg -l localhost:3000 -usecache no -JSON pass -populateJSON no -d DEBUG

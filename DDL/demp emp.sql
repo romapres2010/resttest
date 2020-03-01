@@ -83,3 +83,8 @@ insert into emp (empno, ename,    job,        mgr,   hiredate,     sal, comm, de
                 (7934, 'MILLER', 'CLERK',     7782, '1982-01-23', 1300, NULL,   10);
 
 commit;
+
+GRANT ALL ON TABLE public.dept TO test_user;
+GRANT ALL ON TABLE public.emp TO test_user;
+GRANT ALL ON TABLE public.salgrade TO test_user;
+GRANT ALL ON SEQUENCE public.dept_deptno_seq TO test_user;

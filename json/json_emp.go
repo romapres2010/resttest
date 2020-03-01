@@ -6,7 +6,7 @@ import (
 
 	"github.com/francoispqt/gojay"
 	"github.com/pkg/errors"
-	"github.com/romapres2010/restdept/model"
+	"github.com/romapres2010/resttest/model"
 )
 
 // GetEmp return a JSON for a given id
